@@ -9,6 +9,7 @@ type ToolType = 'generate' | 'summarize' | 'translate';
 export const DocumentGenerator = () => {
     const [activeTool, setActiveTool] = useState<ToolType>('generate');
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<string | null>(null);
 
     // Generation State
@@ -25,8 +26,31 @@ export const DocumentGenerator = () => {
     const [targetLang, setTargetLang] = useState('es');
 
     const handleGenerate = async () => {
-        setIsLoading(true);
+        setError(null);
         setResult(null);
+
+        // Validation
+        if (!genData.candidateName.trim()) {
+            setError('Please enter the candidate name.');
+            return;
+        }
+        if (!genData.role.trim()) {
+            setError('Please enter the role title.');
+            return;
+        }
+
+        if (genData.template === 'offer-letter') {
+            if (!genData.ctc.trim()) {
+                setError('Please enter the Annual CTC.');
+                return;
+            }
+            if (!genData.startDate) {
+                setError('Please select a start date.');
+                return;
+            }
+        }
+
+        setIsLoading(true);
 
         // Simulate AI delay
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -169,6 +193,18 @@ export const DocumentGenerator = () => {
                                         </div>
                                     </>
                                 )}
+
+                                {error && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="error-message"
+                                        style={{ color: '#ef4444', fontSize: '13px', padding: '8px', background: 'rgba(239,68,68,0.1)', borderRadius: '8px', textAlign: 'center' }}
+                                    >
+                                        {error}
+                                    </motion.div>
+                                )}
+
                                 <button className="action-btn" onClick={handleGenerate} disabled={isLoading}>
                                     {isLoading ? <RefreshCw className="spin" size={20} /> : <Wand2 size={20} />}
                                     {isLoading ? 'Generating...' : 'Generate Document'}
