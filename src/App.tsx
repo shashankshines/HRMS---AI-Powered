@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { ChatBot } from './components/ChatBot';
 import { Login } from './components/Login';
+import { DocumentGenerator } from './components/DocumentGenerator';
 import './App.css';
 
 function App() {
@@ -47,10 +48,14 @@ function App() {
         </button>
       </div>
       <main className="content">
-        <ChatBot
-          activeCategory={activeCategory}
-          onClearCategory={() => setActiveCategory(null)}
-        />
+        {activeCategory === 'doc-gen' ? (
+          <DocumentGenerator />
+        ) : (
+          <ChatBot
+            activeCategory={activeCategory}
+            onClearCategory={() => setActiveCategory(null)}
+          />
+        )}
       </main>
     </div>
   );
