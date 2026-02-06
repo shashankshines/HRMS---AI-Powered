@@ -21,8 +21,8 @@ export const Login = ({ onLogin }: LoginProps) => {
         // Simulate API delay
         await new Promise(resolve => setTimeout(resolve, 800));
 
-        // Mock authentication
-        if (email === 'demo@company.com' && password === 'hrms2026') {
+        // Mock authentication - Case insensitive email, ignore whitespace
+        if (email.toLowerCase().trim() === 'demo@company.com' && password === 'hrms2026') {
             setIsLoading(false);
             onLogin('John Doe'); // Passing mock user name
         } else {
