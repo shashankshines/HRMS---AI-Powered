@@ -4,10 +4,9 @@
     display: flex;
     flex-direction: column;
     padding: 24px 16px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 100;
+    background: var(--sidebar-bg);
+    /* Ensure background is set */
+    border-right: 1px solid var(--border-color);
 }
 
 .sidebar-header {

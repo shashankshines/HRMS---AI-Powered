@@ -261,3 +261,33 @@
     color: #111827;
     /* font-family: sans-serif; Removed to match global style */
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .doc-gen-container {
+        padding: 16px;
+    }
+
+    .tool-content {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;
+        /* Preview on top or bottom? Let's hide preview on mobile start state or stack it bottom */
+        flex-direction: column;
+    }
+
+    .input-section {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-right: 0;
+        padding-bottom: 24px;
+    }
+
+    .preview-section {
+        min-height: 300px;
+    }
+
+    .doc-header h2 {
+        font-size: 20px;
+    }
+}

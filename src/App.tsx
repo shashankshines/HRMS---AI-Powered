@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { ChatBot } from './components/ChatBot';
 import { Login } from './components/Login';
@@ -7,6 +8,7 @@ import './App.css';
 
 function App() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [user, setUser] = useState<string | null>(() => {
     return localStorage.getItem('hrms_user');
   });
@@ -20,7 +22,10 @@ function App() {
     setUser(null);
     localStorage.removeItem('hrms_user');
     setActiveCategory(null);
+    setIsSidebarOpen(false);
   };
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   if (!user) {
     return <Login onLogin={handleLogin} />;
@@ -28,21 +33,33 @@ function App() {
 
   return (
     <div className="app-layout">
-      <Sidebar
-        activeCategory={activeCategory}
-        onCategorySelect={setActiveCategory}
-      />
-      <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 100 }}>
+      {/* Mobile Menu Button */}
+      <button
+        className="mobile-menu-btn"
+        onClick={toggleSidebar}
+      >
+        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)} />
+      )}
+
+      <div className={`sidebar-wrapper ${isSidebarOpen ? 'open' : ''}`}>
+        <Sidebar
+          activeCategory={activeCategory}
+          onCategorySelect={(cat) => {
+            setActiveCategory(cat);
+            if (window.innerWidth <= 768) setIsSidebarOpen(false);
+          }}
+        />
+      </div>
+
+      <div className="sign-out-container">
         <button
           onClick={handleLogout}
-          style={{
-            padding: '8px 16px',
-            background: 'rgba(255,255,255,0.5)',
-            border: '1px solid rgba(0,0,0,0.1)',
-            borderRadius: '20px',
-            fontSize: '14px',
-            cursor: 'pointer'
-          }}
+          className="sign-out-btn"
         >
           Sign Out
         </button>
