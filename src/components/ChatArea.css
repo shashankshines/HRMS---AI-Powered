@@ -1,0 +1,241 @@
+.chat-area {
+    margin-left: 280px;
+    min-height: 100vh;
+    padding: 80px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.chat-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.chat-header h2 {
+    font-size: 40px;
+    margin-bottom: 12px;
+    color: var(--primary-text);
+}
+
+.chat-header p {
+    color: var(--secondary-text);
+    font-size: 18px;
+}
+
+.clear-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--secondary-text);
+}
+
+.clear-filter-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.search-box-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 48px;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-color);
+}
+
+.search-icon {
+    color: var(--secondary-text);
+    margin-right: 12px;
+}
+
+.search-input-wrapper input {
+    flex: 1;
+    border: none;
+    font-size: 16px;
+    padding: 12px 0;
+    color: var(--primary-text);
+}
+
+.search-button {
+    background: var(--primary-text);
+    color: white;
+    padding: 0 32px;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background: #333;
+}
+
+.results-container {
+    margin-bottom: 48px;
+    min-height: 200px;
+}
+
+.result-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+}
+
+.result-header {
+    margin-bottom: 24px;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #F2F2F7;
+    color: var(--accent-color);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.result-header h3 {
+    font-size: 24px;
+}
+
+.answer-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.conditions-section {
+    background: #F9F9FB;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.section-label {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.conditions-section ul {
+    list-style: none;
+}
+
+.conditions-section li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #444;
+}
+
+.conditions-section li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.result-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--secondary-text);
+    font-size: 13px;
+}
+
+.source-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.error-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #FFF5F5;
+    color: #C53030;
+    padding: 20px 24px;
+    border-radius: 16px;
+    border: 1px solid #FED7D7;
+}
+
+.quick-suggestions {
+    text-align: center;
+}
+
+.quick-suggestions p {
+    font-size: 14px;
+    color: var(--secondary-text);
+    margin-bottom: 16px;
+}
+
+.suggestions-grid {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.suggestions-grid button {
+    padding: 8px 20px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--primary-text);
+}
+
+.suggestions-grid button:hover {
+    background: var(--bg-color);
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: rotate 0.8s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
