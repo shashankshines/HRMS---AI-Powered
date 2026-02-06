@@ -27,9 +27,11 @@ function App() {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
+  /* Login screen disabled for now
   if (!user) {
     return <Login onLogin={handleLogin} />;
   }
+  */
 
   return (
     <div className="app-layout">
